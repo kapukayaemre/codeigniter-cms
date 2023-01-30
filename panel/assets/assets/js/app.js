@@ -552,8 +552,18 @@
 }(jQuery, window);
 
 // initialize app
-+function($, window) { 'use strict';
++function($, window) {
+	'use strict';
 	window.app.init();
+	//! Theme Set Dark
+	window.app.menubar.setTheme('dark');
+	window.app.menubar.applyTheme();
+	//!Menu Bar Set Yellow
+	window.app.navbar.setTheme('warning');
+	window.app.navbar.applyTheme();
+
+	window.app.saveSettings();
+
 	window.app.menubar.init();
 	window.app.navbar.init();
 	window.app.customizer.init();
