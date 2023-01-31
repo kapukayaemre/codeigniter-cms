@@ -84,6 +84,7 @@ class Product extends CI_Controller {
 
     }
 
+    /* Güncelleme Formu*/
     public function  update_form($id){
         $viewData = new stdClass();
 
@@ -102,4 +103,68 @@ class Product extends CI_Controller {
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
+    /* Güncelleme İşlemleri */
+    public function update($id){
+        // Kütüphane çağırılır ->
+        $this->load->library('form_validation');
+        // Kurallar tanımlanır ->     // Parametre olarak formdaki name, başlık, kurallar
+        $this->form_validation->set_rules('title', 'Başlık', 'required|trim');
+
+        $this->form_validation->set_message(
+            array(
+                'required' => '<b>{field}</b> Alanını Doldurulmalıdır.'
+            )
+        );
+        // Form Validation çalışır -> (True veya False değer döner.)
+        $validate = $this->form_validation->run();
+
+        // VERITABANINA KAYIT YOLLAMA
+        if ($validate){
+            $update = $this->product_model->update(
+
+                array(
+                    'id'    => $id
+                ),
+
+                array(
+                    'title'         => $this->input->post('title'),
+                    'description'   => $this->input->post('description'),
+                    'rank'          => 0,
+                    'url'           => convertToSEO($this->input->post('title')),
+                    'isActive'      => 1,
+                    'createdAt'     => date('Y-m-d H:i:s')
+                )
+            );
+            // TODO Alert Sistemi Eklenecek
+            if ($update){
+                redirect(base_url('product'));
+            } else {
+                redirect(base_url('product'));
+            }
+
+
+
+        } else {
+            $viewData = new stdClass();
+
+            /* Tekrar View'e Yolladığımızda item değişkeni tanımlı olmadığı için hata verir.
+             Bu sebepten dolayı bir view yüklerken tüm gereksinimleri karşılanmalıdır.!!! */
+            $item = $this->product_model->get(
+                array(
+                    'id'    => $id
+                )
+            );
+
+
+            $viewData->viewFolder = $this->viewFolder;
+            $viewData->subViewFolder = 'update';
+            $viewData->form_error = true;
+            $viewData->item = $item;
+
+            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+        }
+
+    }
+
 }
+
