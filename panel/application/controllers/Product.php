@@ -52,8 +52,26 @@ class Product extends CI_Controller {
         // Form Validation çalışır -> (True veya False değer döner.)
         $validate = $this->form_validation->run();
 
+        // VERITABANINA KAYIT YOLLAMA
         if ($validate){
-            echo 'Kayıt İşlemleri Başlar';
+            $insert = $this->product_model->add(
+                array(
+                    'title'         => $this->input->post('title'),
+                    'description'   => $this->input->post('description'),
+                    'rank'          => 0,
+                    'url'           => 'test',
+                    'isActive'      => 1,
+                    'createdAt'     => date('Y-m-d H:i:s')
+                )
+            );
+            if ($insert){
+                echo "Kayıt İşlemi Başarılı";
+            } else {
+                echo "İşlem Başarısız";
+            }
+
+
+
         } else {
             $viewData = new stdClass();
             $viewData->viewFolder = $this->viewFolder;
@@ -62,10 +80,6 @@ class Product extends CI_Controller {
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
-        // Başarılı ise kayıt işlemi gerçekleşir ->
-
-
-        // Başarsız ise Hata Gösterilir.
 
     }
 
