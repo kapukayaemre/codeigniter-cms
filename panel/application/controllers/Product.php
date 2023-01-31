@@ -59,7 +59,7 @@ class Product extends CI_Controller {
                     'title'         => $this->input->post('title'),
                     'description'   => $this->input->post('description'),
                     'rank'          => 0,
-                    'url'           => 'test',
+                    'url'           => convertToSEO($this->input->post('title')),
                     'isActive'      => 1,
                     'createdAt'     => date('Y-m-d H:i:s')
                 )
