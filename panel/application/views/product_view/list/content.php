@@ -18,19 +18,19 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <th>#id</th>
-                        <th>url</th>
                         <th>Başlık</th>
+                        <th>url</th>
                         <th>Açıklama</th>
                         <th>Durumu</th>
                         <th>İşlem</th>
                     </thead>
-                    <tbody>
+                    <tbody class="sortable" data-url="<?php echo base_url("product/rankSetter"); ?>">
                 <!-- Veritabanındaki Her Biri Veri Çekildi -->
                     <?php foreach ($items as $item)  {  ?>
-                        <tr>
+                        <tr id="ord-<?php echo $item->id; ?>">
                             <td><?php echo $item->id; ?></td>
-                            <td><?php echo $item->url; ?></td>
                             <td><?php echo $item->title; ?></td>
+                            <td><?php echo $item->url; ?></td>
                             <td><?php echo $item->description; ?></td>
                             <td>
                                 <input
