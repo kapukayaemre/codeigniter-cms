@@ -85,7 +85,7 @@ class Product extends CI_Controller {
     }
 
     /* Güncelleme Formu*/
-    public function  update_form($id){
+    public function update_form($id){
         $viewData = new stdClass();
 
         /* Veritabanındaki Tablodan Verilerin Getirilmesi */
@@ -179,6 +179,22 @@ class Product extends CI_Controller {
         } else {
             redirect(base_url('product'));
         }
+    }
+
+    public function isActiveSetter($id){
+
+        if ($id){
+            $isActive = ($this->input->post("data") === "true") ? 1 : 0;
+            $this->product_model->update(
+                array(
+                    "id" => $id
+                ),
+                array(
+                    "isActive" => $isActive
+                )
+            );
+        }
+
     }
 
 }
