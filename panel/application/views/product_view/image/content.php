@@ -22,122 +22,48 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <table class="table table-bordered table-hover pictures_list" >
-                    <thead>
-                        <th class="text-center">#id</th>
-                        <th class="text-center">Görsel</th>
-                        <th class="text-center">Resim Adı</th>
-                        <th class="text-center">Durumu</th>
-                        <th class="text-center">İşlem</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center"><img width="40" src="https://img.freepik.com/premium-vector/elegant-furniture-logo-with-lamp_23-2148477392.jpg?w=2000" alt=""></td>
-                            <td>deneme-urun.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                        data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                        class="isActive"
-                                        type="checkbox"
-                                        data-switchery
-                                        data-color="#10c469"
-                                    <?php echo (true) ? 'checked' : ''; ?>
-                                /></td>
-                            <td class="w100 text-center">
-                                <button
-                                        data-url="<?php echo base_url("product/delete/"); ?>"
-                                        class="btn btn-sm btn-danger btn-block remove-btn">
-                                        <i class="fa fa-trash"></i> <b>Sil</b>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center"><img width="40" src="https://img.freepik.com/premium-vector/elegant-furniture-logo-with-lamp_23-2148477392.jpg?w=2000" alt=""></td>
-                            <td>deneme-urun.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                        data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                        class="isActive"
-                                        type="checkbox"
-                                        data-switchery
-                                        data-color="#10c469"
-                                    <?php echo (true) ? 'checked' : ''; ?>
-                                /></td>
-                            <td class="w100 text-center">
-                                <button
-                                        data-url="<?php echo base_url("product/delete/"); ?>"
-                                        class="btn btn-sm btn-danger btn-block remove-btn">
-                                        <i class="fa fa-trash"></i> <b>Sil</b>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center"><img width="40" src="https://img.freepik.com/premium-vector/elegant-furniture-logo-with-lamp_23-2148477392.jpg?w=2000" alt=""></td>
-                            <td>deneme-urun.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                        data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                        class="isActive"
-                                        type="checkbox"
-                                        data-switchery
-                                        data-color="#10c469"
-                                    <?php echo (true) ? 'checked' : ''; ?>
-                                /></td>
-                            <td class="w100 text-center">
-                                <button
-                                        data-url="<?php echo base_url("product/delete/"); ?>"
-                                        class="btn btn-sm btn-danger btn-block remove-btn">
-                                        <i class="fa fa-trash"></i> <b>Sil</b>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center"><img width="40" src="https://img.freepik.com/premium-vector/elegant-furniture-logo-with-lamp_23-2148477392.jpg?w=2000" alt=""></td>
-                            <td>deneme-urun.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                        data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                        class="isActive"
-                                        type="checkbox"
-                                        data-switchery
-                                        data-color="#10c469"
-                                    <?php echo (true) ? 'checked' : ''; ?>
-                                /></td>
-                            <td class="w100 text-center">
-                                <button
-                                        data-url="<?php echo base_url("product/delete/"); ?>"
-                                        class="btn btn-sm btn-danger btn-block remove-btn">
-                                        <i class="fa fa-trash"></i> <b>Sil</b>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center"><img width="40" src="https://img.freepik.com/premium-vector/elegant-furniture-logo-with-lamp_23-2148477392.jpg?w=2000" alt=""></td>
-                            <td>deneme-urun.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                        data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                        class="isActive"
-                                        type="checkbox"
-                                        data-switchery
-                                        data-color="#10c469"
-                                    <?php echo (true) ? 'checked' : ''; ?>
-                                /></td>
-                            <td class="w100 text-center">
-                                <button
-                                        data-url="<?php echo base_url("product/delete/"); ?>"
-                                        class="btn btn-sm btn-danger btn-block remove-btn">
-                                        <i class="fa fa-trash"></i> <b>Sil</b>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <?php if(empty($item_images)) { ?>
+                    <div class="alert alert-info text-center">
+                        <h5 class="alert-title">Kayıt Bulunamadı</h5>
+                        <p>Burada herhangi bir resim bulunmamaktadır.</p>
+                    </div>
+                <?php } else { ?>
+                    <table class="table table-bordered table-hover pictures_list" >
+                        <thead>
+                            <th class="text-center">#id</th>
+                            <th class="text-center">Görsel</th>
+                            <th class="text-center">Resim Adı</th>
+                            <th class="text-center">Durumu</th>
+                            <th class="text-center">İşlem</th>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($item_images as $image) { ?>
+                            <tr>
+                                <td class="w100 text-center"><?php echo $image->id; ?></td>
+                                <td class="w100 text-center"><img width="40" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>"></td>
+                                <td><?php echo $image->img_url; ?></td>
+                                <td class="w100 text-center">
+                                    <input
+                                            data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
+                                            class="isActive"
+                                            type="checkbox"
+                                            data-switchery
+                                            data-color="#10c469"
+                                        <?php echo ($image->id) ? 'checked' : ''; ?>
+                                    /></td>
+                                <td class="w100 text-center">
+                                    <button
+                                            data-url="<?php echo base_url("product/delete/"); ?>"
+                                            class="btn btn-sm btn-danger btn-block remove-btn">
+                                            <i class="fa fa-trash"></i> <b>Sil</b>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
             </div><!-- .widget-body -->
         </div>
     </div>
