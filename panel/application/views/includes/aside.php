@@ -1,12 +1,9 @@
 <aside id="menubar" class="menubar light">
     <div class="app-user">
-
         <div class="media">
             <div class="media-left">
                 <div class="avatar avatar-md avatar-circle">
-                    <a href="javascript:void(0)"><img class="img-responsive"
-                                                      src="<?php echo base_url('assets'); ?>/assets/images/221.jpg"
-                                                      alt="avatar"/></a>
+                    <a href="javascript:void(0)"><img class="img-responsive" src="<?php echo base_url("assets"); ?>/assets/images/221.jpg" alt="avatar"/></a>
                 </div><!-- .avatar -->
             </div>
             <div class="media-body">
@@ -14,8 +11,7 @@
                     <h5><a href="javascript:void(0)" class="username">John Doe</a></h5>
                     <ul>
                         <li class="dropdown">
-                            <a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <small>Web Developer</small>
                                 <span class="caret"></span>
                             </a>
@@ -93,7 +89,7 @@
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('product'); ?>">
+                    <a href="<?php echo base_url("product"); ?>">
                         <i class="menu-icon fa fa-cubes"></i>
                         <span class="menu-text">Ürünler</span>
                     </a>
@@ -129,17 +125,18 @@
 
                 <li>
                     <a href="javascript:void(0)">
-                        <i class="menu-icon fa fa-users"></i>
+                        <i class="menu-icon fa fa-user-secret"></i>
                         <span class="menu-text">Kullanıcılar</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="javascript:void(0)">
-                        <i class="menu-icon fa fa-user-plus"></i>
+                        <i class="menu-icon fa fa-users"></i>
                         <span class="menu-text">Aboneler</span>
                     </a>
                 </li>
+
 
                 <li>
                     <a href="javascript:void(0)">
@@ -154,6 +151,7 @@
                         <span class="menu-text">Ana Sayfa</span>
                     </a>
                 </li>
+
             </ul><!-- .app-menu -->
         </div><!-- .menubar-scroll-inner -->
     </div><!-- .menubar-scroll -->
