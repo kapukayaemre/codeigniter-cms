@@ -3,6 +3,7 @@
 class Product extends CI_Controller
 {
     public $viewFolder = "";
+
     public function __construct()
     {
         parent::__construct();
@@ -19,9 +20,9 @@ class Product extends CI_Controller
         $items = $this->product_model->get_all();
 
         /* View'e Gönderilecek Değişkenlerin Set Edilmesi */
-        $viewData->viewFolder = $this->viewFolder;
+        $viewData->viewFolder    = $this->viewFolder;
         $viewData->subViewFolder = "list";
-        $viewData->items = $items;
+        $viewData->items         = $items;
 
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
@@ -32,7 +33,7 @@ class Product extends CI_Controller
         $viewData = new stdClass();
 
         /* View'e Gönderilecek Değişkenlerin Set Edilmesi */
-        $viewData->viewFolder = $this->viewFolder;
+        $viewData->viewFolder    = $this->viewFolder;
         $viewData->subViewFolder = "add";
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
@@ -42,25 +43,36 @@ class Product extends CI_Controller
     {
         $this->load->library("form_validation");
         /* Rules */
-        $this->form_validation->set_rules("title","Başlık","required|trim");
+        $this->form_validation->set_rules("title", "Başlık", "required|trim");
         $this->form_validation->set_message([
-            "required"  => "<b>{field}</b> Alanı Doldurulmalıdır"
+            "required" => "<b>{field}</b> Alanı Doldurulmalıdır"
         ]);
 
         /* Run Validate */
         $validate = $this->form_validation->run();
-        if ($validate)
-        {
-            echo "Kayıt İşlemleri Başlar..";
-        }
-        else
-        {
+        if ($validate) {
+            $insert = $this->product_model->add([
+                "title"       => $this->input->post("title"),
+                "description" => $this->input->post("description"),
+                "url"         => "test...",
+                "rank"        => 0,
+                "isActive"    => 1,
+                "createdAt"   => date("Y-m-d H:i:s")
+            ]);
+
+            if ($insert) {
+                echo "Kayıt İşlemi Başarılı";
+            } else {
+                echo "İşlem Başarısız";
+            }
+
+        } else {
             $viewData = new stdClass();
 
             /* View'e Gönderilecek Değişkenlerin Set Edilmesi */
-            $viewData->viewFolder = $this->viewFolder;
+            $viewData->viewFolder    = $this->viewFolder;
             $viewData->subViewFolder = "add";
-            $viewData->form_error = true;
+            $viewData->form_error    = true;
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
