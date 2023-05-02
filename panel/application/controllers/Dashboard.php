@@ -10,7 +10,6 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->viewFolder = "dashboard_view";
     }
-
     public function index()
 	{
 		$this->load->view("{$this->viewFolder}/index");
