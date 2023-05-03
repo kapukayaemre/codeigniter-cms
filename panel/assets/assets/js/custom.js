@@ -4,12 +4,13 @@ $(document).ready(function () {
     $(".sortable").sortable();
 
     /*? Sıralama Değiştikten Sonra Veriyi Tabloya Yollamak İçin Yazılan Metot*/
-    $(".sortable").on("sortupdate", function(event, ui){
+    $(".sortable").on("sortupdate", function (event, ui) {
 
         let $data = $(this).sortable("serialize");
         let $data_url = $(this).data("url");
 
-        $.post($data_url, {data : $data}, function(response){})
+        $.post($data_url, {data: $data}, function (response) {
+        })
 
     })
 
@@ -41,7 +42,7 @@ $(document).ready(function () {
     });
 
     /*? Statüs Değiştirmek İçin Yazılan Metot */
-    $(".isActive").change(function () {
+    $(".content-container, .image_list_container").on('change', '.isActive', function () {
         let $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
 
@@ -58,7 +59,7 @@ $(document).ready(function () {
     });
 
     /*? Kapak Fotoğrafı Statüs Değiştirmek İçin Yazılan Metot */
-    $(".image_list_container").on('change', '.isCover' ,function () {
+    $(".image_list_container").on('change', '.isCover', function () {
         let $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
 
@@ -74,7 +75,7 @@ $(document).ready(function () {
                 $(".image_list_container").html(response);
 
                 //? Toggle Button Görüntüsünü Initialize Etmek İçin Gerek Metot
-                $('[data-switchery]').each(function(){
+                $('[data-switchery]').each(function () {
                     var $this = $(this),
                         color = $this.attr('data-color') || '#188ae2',
                         jackColor = $this.attr('data-jackColor') || '#ffffff',
@@ -92,14 +93,14 @@ $(document).ready(function () {
 
     /*? Yeni Resim Yüklendiğinde Sayfayı Refresh Etmeden Image Listin Yenilenmesi İçin Gerekli Metot */
     let uploadSection = Dropzone.forElement("#dropzone");
-    uploadSection.on("complete", function (file){
+    uploadSection.on("complete", function (file) {
 
         let $data_url = $("#dropzone").data("url");
-        $.post($data_url, {}, function (response){
+        $.post($data_url, {}, function (response) {
             $(".image_list_container").html(response);
 
             //? Toggle Button Görüntüsünü Initialize Etmek İçin Gerek Metot
-            $('[data-switchery]').each(function(){
+            $('[data-switchery]').each(function () {
                 var $this = $(this),
                     color = $this.attr('data-color') || '#188ae2',
                     jackColor = $this.attr('data-jackColor') || '#ffffff',

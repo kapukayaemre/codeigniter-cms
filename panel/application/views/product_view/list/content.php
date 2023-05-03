@@ -14,7 +14,7 @@
             <?php } else { ?>
             <div class="widget-body">
                 <div class="table-responsive">
-                    <table id="default-datatable" data-plugin="DataTable" class="table table-hover table-striped">
+                    <table id="default-datatable" data-plugin="DataTable" class="table table-hover table-striped content-container">
                         <thead>
                         <tr>
                             <th><i class="fa fa-reorder"></i></th>
