@@ -1,5 +1,19 @@
 $(document).ready(function () {
 
+    /* Tablodaki Elemanların Sürükleme İle Sırasının Değiştirilmesi */
+    $(".sortable").sortable();
+
+    /* Sıralama Değiştikten Sonra Veriyi Tabloya Yollamak İçin Yazılan Metot*/
+    $(".sortable").on("sortupdate", function(event, ui){
+
+        let $data = $(this).sortable("serialize");
+        let $data_url = $(this).data("url");
+
+        $.post($data_url, {data : $data}, function(response){})
+
+    })
+
+    /* Silmeden Önce SweetAlert2 Uyarısı */
     $(".remove-btn").click(function () {
 
         let $data_url = $(this).data("url");
@@ -26,6 +40,7 @@ $(document).ready(function () {
         })
     });
 
+    /* Statüs Değiştirmek İçin Yazılan Metot */
     $(".isActive").change(function () {
         let $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
@@ -41,5 +56,6 @@ $(document).ready(function () {
             })
         }
     });
+
 
 });
