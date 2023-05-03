@@ -1,6 +1,6 @@
-$(document).ready(function (){
+$(document).ready(function () {
 
-    $(".remove-btn").click(function (){
+    $(".remove-btn").click(function () {
 
         let $data_url = $(this).data("url");
 
@@ -24,6 +24,22 @@ $(document).ready(function (){
                 })
             }
         })
+    });
+
+    $(".isActive").change(function () {
+        let $data = $(this).prop("checked");
+        var $data_url = $(this).data("url");
+
+        if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
+            $.post($data_url, {data: $data}, function (response) {
+                Swal.fire({
+                    title: 'İşlem Başarılı!',
+                    text: 'Statü Durumu Güncellendi',
+                    icon: 'success',
+                    timer: 5000,
+                })
+            })
+        }
     });
 
 });

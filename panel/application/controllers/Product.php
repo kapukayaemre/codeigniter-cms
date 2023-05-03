@@ -137,7 +137,7 @@ class Product extends CI_Controller
             $viewData->viewFolder    = $this->viewFolder;
             $viewData->subViewFolder = "update";
             $viewData->form_error    = true;
-            $viewData->item = $item;
+            $viewData->item          = $item;
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
@@ -150,15 +150,28 @@ class Product extends CI_Controller
         ]);
 
         // TODO Alert Sistemi Eklenecek
-        if ($delete)
-        {
+        if ($delete) {
             redirect(base_url("product"));
-        }
-        else
-        {
+        } else {
             redirect(base_url("product"));
         }
 
+    }
+
+    public function isActiveSetter($id)
+    {
+        if ($id) {
+            $isActive = ($this->input->post("data") === "true") ? 1 : 0;
+
+            $this->product_model->update(
+                [
+                    "id" => $id
+                ],
+                [
+                    "isActive" => $isActive
+                ]
+            );
+        }
     }
 
 }
