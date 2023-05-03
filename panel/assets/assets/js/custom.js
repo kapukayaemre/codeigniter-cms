@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-    /* Tablodaki Elemanların Sürükleme İle Sırasının Değiştirilmesi */
+    /*? Tablodaki Elemanların Sürükleme İle Sırasının Değiştirilmesi */
     $(".sortable").sortable();
 
-    /* Sıralama Değiştikten Sonra Veriyi Tabloya Yollamak İçin Yazılan Metot*/
+    /*? Sıralama Değiştikten Sonra Veriyi Tabloya Yollamak İçin Yazılan Metot*/
     $(".sortable").on("sortupdate", function(event, ui){
 
         let $data = $(this).sortable("serialize");
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     })
 
-    /* Silmeden Önce SweetAlert2 Uyarısı */
+    /*? Silmeden Önce SweetAlert2 Uyarısı */
     $(".remove-btn").click(function () {
 
         let $data_url = $(this).data("url");
@@ -40,7 +40,7 @@ $(document).ready(function () {
         })
     });
 
-    /* Statüs Değiştirmek İçin Yazılan Metot */
+    /*? Statüs Değiştirmek İçin Yazılan Metot */
     $(".isActive").change(function () {
         let $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
@@ -57,9 +57,14 @@ $(document).ready(function () {
         }
     });
 
+    /*? Yeni Resim Yüklendiğinde Sayfayı Refresh Etmeden Image Listin Yenilenmesi İçin Gerekli Metot */
     let uploadSection = Dropzone.forElement("#dropzone");
-    uploadSection.on("complete", function (){
-        alert();
+    uploadSection.on("complete", function (file){
+
+        let $data_url = $("#dropzone").data("url");
+        $.post($data_url, {}, function (response){
+            $(".image_list_container").html(response);
+        });
     });
 
 
