@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <?php $this->load->view("includes/head") ?>
+    <?php $this->load->view("includes/head"); ?>
+    <?php $this->load->view("{$viewFolder}/{$subViewFolder}/page_style"); ?>
 </head>
 
 <body class="menubar-left menubar-unfold menubar-light theme-primary">
@@ -27,11 +28,11 @@
         </section>
     </div><!-- .wrap -->
     <!-- APP FOOTER -->
-   <?php $this->load->view("includes/footer") ?>
+    <?php $this->load->view("includes/footer"); ?>
     <!-- /#app-footer -->
 </main>
 <!--========== END app main -->
 
-<?php $this->load->view("includes/include_script") ?>
+<?php $this->load->view("includes/include_script"); ?>
 </body>
 </html>
