@@ -14,27 +14,27 @@
             <?php } else { ?>
             <div class="widget-body">
                 <div class="table-responsive">
-                    <table id="default-datatable" data-plugin="DataTable" class="table table-hover table-striped content-container">
+                    <table id="default-datatable" data-plugin="DataTable" class="table table-hover table-bordered table-striped content-container">
                         <thead>
                         <tr>
-                            <th><i class="fa fa-reorder"></i></th>
-                            <th>#id</th>
+                            <th></th>
+                            <th class="w50">#id</th>
                             <th>Başlık</th>
                             <th>URL</th>
                             <th>Açıklama</th>
                             <th>Durumu</th>
-                            <th>İşlem</th>
+                            <th style="width: 300px" class="text-center">İşlem</th>
                         </tr>
                         </thead>
                         <tbody class="sortable" data-url="<?php echo base_url("product/rankSetter"); ?>">
                         <?php foreach ($items as $item) { ?>
                             <tr id="ord-<?php echo $item->id; ?>">
-                                <td><i class="fa fa-reorder"></i></td>
-                                <td>#<?php echo $item->id; ?></td>
+                                <td class="order"><i class="fa fa-reorder"></i></td>
+                                <td class="w50">#<?php echo $item->id; ?></td>
                                 <td><?php echo $item->title?></td>
                                 <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->description ?></td>
-                                <td>
+                                <td class="w50">
                                         <input
                                             data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>"
                                             class="isActive"
@@ -44,7 +44,7 @@
                                             <?php echo ($item->isActive) ? "checked" : "" ?>
                                         />
                                 </td>
-                                <td>
+                                <td style="width: 300px" class="text-center">
                                     <button
                                         data-url="<?php echo base_url("product/delete/$item->id"); ?>"
                                         class="btn btn-danger btn-outline remove-btn">

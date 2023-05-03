@@ -7,7 +7,7 @@
 
     <table class="table table-bordered table-striped table-hover pictures_list">
         <thead>
-        <th class="text-center"><i class="fa fa-reorder"></i></th>
+        <th class="order"><i class="fa fa-reorder"></i></th>
         <th>#id</th>
         <th>Görsel</th>
         <th>Resim Adı</th>
@@ -18,13 +18,13 @@
         <tbody class="sortable" data-url="<?php echo base_url("product/imageRankSetter"); ?>">
         <?php foreach ($item_images as $image)  { ?>
             <tr id="ord-<?php echo $image->id; ?>">
-                <td style="width: 40px" class="text-center"><i class="fa fa-reorder"></i></td>
-                <td class="w100 text-center">#<?php echo $image->id; ?></td>
-                <td class="w100 text-center">
+                <td class="order"><i class="fa fa-reorder"></i></td>
+                <td class="w100">#<?php echo $image->id; ?></td>
+                <td class="w100">
                     <img width="50" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>" class="img-responsive">
                 </td>
                 <td><?php echo $image->img_url; ?></td>
-                <td class="w100 text-center">
+                <td class="w100">
                     <input
                         data-url="<?php echo base_url("product/imageIsActiveSetter/$image->id"); ?>"
                         class="isActive"
@@ -34,7 +34,7 @@
                         <?php echo ($image->isActive) ? "checked" : ""; ?>
                     />
                 </td>
-                <td class="w100 text-center">
+                <td class="w100">
                     <input
                         data-url="<?php echo base_url("product/isCoverSetter/$image->id/$image->product_id"); ?>"
                         class="isCover"
@@ -44,7 +44,7 @@
                         <?php echo ($image->isCover) ? "checked" : ""; ?>
                     />
                 </td>
-                <td class="w100 text-center">
+                <td class="w100">
                     <button
                         data-url="<?php echo base_url("product/imageDelete/$image->id/$image->product_id"); ?>"
                         class="btn btn-danger btn-outline remove-btn btn-block">
