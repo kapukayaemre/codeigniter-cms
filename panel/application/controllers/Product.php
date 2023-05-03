@@ -208,10 +208,17 @@ class Product extends CI_Controller
             "id" => $id
         ]);
 
+        $viewData->item_images = $this->product_image_model->get_all(
+            [
+                "product_id"    => $id
+            ]
+        );
+
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function image_upload($id){
+    public function image_upload($id)
+    {
 
         $config["allowed_types"] = "jpg|jpeg|png";
         $config["upload_path"]   = "uploads/$this->viewFolder/";
@@ -220,18 +227,18 @@ class Product extends CI_Controller
 
         $upload = $this->upload->do_upload("file");
 
-        if($upload){
+        if ($upload) {
 
             $uploaded_file = $this->upload->data("file_name");
 
             $this->product_image_model->add(
                 array(
-                    "img_url"       => $uploaded_file,
-                    "rank"          => 0,
-                    "isActive"      => 1,
-                    "isCover"       => 0,
-                    "createdAt"     => date("Y-m-d H:i:s"),
-                    "product_id"    => $id
+                    "img_url"    => $uploaded_file,
+                    "rank"       => 0,
+                    "isActive"   => 1,
+                    "isCover"    => 0,
+                    "createdAt"  => date("Y-m-d H:i:s"),
+                    "product_id" => $id
                 )
             );
 
