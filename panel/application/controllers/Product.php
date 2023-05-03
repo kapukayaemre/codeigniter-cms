@@ -63,12 +63,23 @@ class Product extends CI_Controller
                 "createdAt"   => date("Y-m-d H:i:s")
             ]);
 
-            // TODO Alert sistemi eklenecek...
             if ($insert) {
-                redirect(base_url("product"));
+                /*? İzi Toast İçin Dinamik Bilgi */
+                $alert = array(
+                    "title" => "Başarılı",
+                    "text"  => "İşlem Başarılı Bir Şekilde Sonuçlandı",
+                    "type"  => "success"
+                );
             } else {
-                redirect(base_url("product"));
+                $alert = array(
+                    "title" => "Başarısız",
+                    "text"  => "İşlem Başarısız Sonuçlandı!",
+                    "type"  => "error"
+                );
             }
+            /*? Tek seferlik alert - session üzerinden */
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("product"));
 
         } else {
             $viewData = new stdClass();
@@ -121,12 +132,23 @@ class Product extends CI_Controller
                     "url"         => convertToSEO($this->input->post("title")),
                 ]);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
-                redirect(base_url("product"));
+                $alert = array(
+                    "title" => "Başarılı",
+                    "text"  => "İşlem Başarılı Bir Şekilde Sonuçlandı",
+                    "type"  => "success"
+                );
             } else {
-                redirect(base_url("product"));
+                $alert = array(
+                    "title" => "Başarısız",
+                    "text"  => "İşlem Başarısız Sonuçlandı!",
+                    "type"  => "error"
+                );
             }
+
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("product"));
+
 
         } else {
             $viewData = new stdClass();
@@ -152,12 +174,22 @@ class Product extends CI_Controller
             "id" => $id
         ]);
 
-        // TODO Alert Sistemi Eklenecek
         if ($delete) {
-            redirect(base_url("product"));
+            $alert = array(
+                "title" => "Başarılı",
+                "text"  => "İşlem Başarılı Bir Şekilde Sonuçlandı",
+                "type"  => "success"
+            );
         } else {
-            redirect(base_url("product"));
+            $alert = array(
+                "title" => "Başarısız",
+                "text"  => "İşlem Başarısız Sonuçlandı!",
+                "type"  => "error"
+            );
         }
+
+        $this->session->set_flashdata("alert", $alert);
+        redirect(base_url("product"));
 
     }
 
@@ -234,7 +266,7 @@ class Product extends CI_Controller
             /*? Kapak Yapılanın Dışında Kalan Kayıtlar */
             $this->product_image_model->update(
                 [
-                    "id !="         => $id,
+                    "id !="      => $id,
                     "product_id" => $parent_id
                 ],
                 [
