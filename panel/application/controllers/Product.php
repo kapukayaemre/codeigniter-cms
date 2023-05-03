@@ -177,6 +177,52 @@ class Product extends CI_Controller
         }
     }
 
+    public function isCoverSetter($id, $parent_id)
+    {
+        if ($id && $parent_id) {
+
+            $isCover = ($this->input->post("data") === "true") ? 1 : 0;
+
+            /*? Kapak Yapılmak İstenen Kayıt*/
+            $this->product_image_model->update(
+                [
+                    "id"         => $id,
+                    "product_id" => $parent_id
+                ],
+                [
+                    "isCover" => $isCover
+                ]
+            );
+            /*? Kapak Yapılanın Dışında Kalan Kayıtlar */
+            $this->product_image_model->update(
+                [
+                    "id !="         => $id,
+                    "product_id" => $parent_id
+                ],
+                [
+                    "isCover" => 0
+                ]
+            );
+
+            $viewData = new stdClass();
+
+            /*? View'e Gönderilecek Değişkenlerin Set Edilmesi */
+            $viewData->viewFolder    = $this->viewFolder;
+            $viewData->subViewFolder = "image";
+
+            $viewData->item_images = $this->product_image_model->get_all(
+                [
+                    "product_id" => $parent_id
+                ]
+            );
+
+            $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_view", $viewData, true);
+
+            echo $render_html;
+
+        }
+    }
+
     public function rankSetter()
     {
         $data = $this->input->post("data");
@@ -269,5 +315,6 @@ class Product extends CI_Controller
 
         echo $render_html;
     }
+
 
 }
