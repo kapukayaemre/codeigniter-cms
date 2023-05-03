@@ -57,5 +57,10 @@ $(document).ready(function () {
         }
     });
 
+    let uploadSection = Dropzone.forElement("#dropzone");
+    uploadSection.on("complete", function (){
+        alert();
+    });
+
 
 });
