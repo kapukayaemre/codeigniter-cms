@@ -79,4 +79,21 @@ class Product extends CI_Controller
         }
     }
 
+    public function update_form($id)
+    {
+        $viewData = new stdClass();
+
+        /* Tablodan Verilerin Getirilmesi */
+        $item = $this->product_model->get([
+            "id" => $id
+        ]);
+
+        /* View'e Gönderilecek Değişkenlerin Set Edilmesi */
+        $viewData->viewFolder    = $this->viewFolder;
+        $viewData->subViewFolder = "update";
+        $viewData->item = $item;
+
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+
 }
