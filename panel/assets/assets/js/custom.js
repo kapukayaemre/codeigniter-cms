@@ -4,7 +4,7 @@ $(document).ready(function () {
     $(".sortable").sortable();
 
     /*? Sıralama Değiştikten Sonra Veriyi Tabloya Yollamak İçin Yazılan Metot*/
-    $(".sortable").on("sortupdate", function (event, ui) {
+    $(".content-container, .image_list_container").on("sortupdate", ".sortable" ,function (event, ui) {
 
         let $data = $(this).sortable("serialize");
         let $data_url = $(this).data("url");
@@ -87,6 +87,9 @@ $(document).ready(function () {
                         jackColor: jackColor
                     });
                 });
+
+                //? DOM yüklendikten sonra tekrar sıralama yapabilmek için
+                $(".sortable").sortable();
             })
         }
     });
@@ -112,6 +115,10 @@ $(document).ready(function () {
                     jackColor: jackColor
                 });
             });
+
+            //? DOM yüklendikten sonra tekrar sıralama yapabilmek için
+            $(".sortable").sortable();
+
         });
     });
 

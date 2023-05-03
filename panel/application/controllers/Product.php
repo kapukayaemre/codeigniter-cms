@@ -229,7 +229,8 @@ class Product extends CI_Controller
             $viewData->item_images = $this->product_image_model->get_all(
                 [
                     "product_id" => $parent_id
-                ]
+                ],
+                "rank ASC"
             );
 
             $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_view", $viewData, true);
@@ -258,6 +259,25 @@ class Product extends CI_Controller
         }
     }
 
+    public function imageRankSetter()
+    {
+        $data = $this->input->post("data");
+        parse_str($data, $order);
+        $items = $order["ord"];
+
+        foreach ($items as $rank => $id) {
+            $this->product_image_model->update(
+                array(
+                    "id"      => $id,
+                    "rank !=" => $rank
+                ),
+                array(
+                    "rank" => $rank
+                )
+            );
+        }
+    }
+
     public function image_form($id)
     {
         $viewData = new stdClass();
@@ -273,7 +293,8 @@ class Product extends CI_Controller
         $viewData->item_images = $this->product_image_model->get_all(
             [
                 "product_id" => $id
-            ]
+            ],
+            "rank ASC"
         );
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
