@@ -15,7 +15,7 @@ $(document).ready(function () {
     })
 
     /*? Silmeden Önce SweetAlert2 Uyarısı */
-    $(".remove-btn").click(function () {
+    $(".content-container, .image_list_container").on('click','.remove-btn',function () {
 
         let $data_url = $(this).data("url");
 
@@ -31,12 +31,6 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = $data_url;
-                Swal.fire({
-                    title: 'İşlem Başarılı!',
-                    text: 'Silmek İstediğiniz Seçenek Silindi',
-                    icon: 'success',
-                    timer: 5000,
-                })
             }
         })
     });
@@ -65,12 +59,6 @@ $(document).ready(function () {
 
         if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
             $.post($data_url, {data: $data}, function (response) {
-                Swal.fire({
-                    title: 'İşlem Başarılı!',
-                    text: 'Kapak Fotoğrafı Güncellendi',
-                    icon: 'success',
-                    timer: 5000,
-                })
 
                 $(".image_list_container").html(response);
 
@@ -90,6 +78,7 @@ $(document).ready(function () {
 
                 //? DOM yüklendikten sonra tekrar sıralama yapabilmek için
                 $(".sortable").sortable();
+
             })
         }
     });
