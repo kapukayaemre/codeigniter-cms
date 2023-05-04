@@ -30,3 +30,11 @@ th {
 .sortable {
     cursor: move;
 }
+
+.image_upload_container {
+    display: none;
+}
+
+.video_url_container {
+    display: none;
+}
