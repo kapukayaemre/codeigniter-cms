@@ -28,7 +28,7 @@
                                 <th>Haber Türü</th>
                                 <th>Görsel</th>
                                 <th>Durumu</th>
-                                <th style="width: 100px" class="text-center">İşlem</th>
+                                <th style="width: 100px">İşlem</th>
                             </tr>
                             </thead>
                             <tbody class="sortable" data-url="<?php echo base_url("news/rankSetter"); ?>">
@@ -40,7 +40,7 @@
                                     <td><?php echo $item->url; ?></td>
                                     <td><?php echo $item->description; ?></td>
                                     <td><?php echo $item->news_type; ?></td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="width: 75px">
                                         <?php if ($item->news_type == "image") { ?>
 
                                             <img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" alt="" class="img-rounded">
@@ -69,7 +69,7 @@
                                             <?php echo ($item->isActive) ? "checked" : "" ?>
                                         />
                                     </td>
-                                    <td style="width: 200px" class="text-center pull-right">
+                                    <td style="width: 200px" class="text-center">
                                         <button
                                             data-url="<?php echo base_url("news/delete/$item->id"); ?>"
                                             class="btn btn-danger btn-outline remove-btn">
