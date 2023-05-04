@@ -7,19 +7,18 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <form action="<?php echo base_url("news/save") ?>" method="POST">
+                <form action="<?php echo base_url("news/save"); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Başlık</label>
-                        <input type="text" class="form-control" placeholder="Başlık" name="title">
-                        <?php if (isset($form_error)) { ?>
-                            <small class="input-form-error"><?php echo form_error("title"); ?></small>
+                        <input class="form-control" placeholder="Başlık" name="title" value="<?php echo isset($_POST["title"]) ? $_POST["title"] : ""; ?>">
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("title"); ?></small>
                         <?php } ?>
                     </div>
 
                     <div class="form-group">
                         <label>Açıklama</label>
-                        <textarea name="description" class="m-0" data-plugin="summernote"
-                                  data-options="{height: 250}"></textarea>
+                        <textarea name="description" class="m-0" data-plugin="summernote" data-options="{height: 250}"><?php echo isset($_POST["description"]) ? $_POST["description"] : ""; ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -27,29 +26,42 @@
                         <div id="control-demo-6" class="">
                             <select class="form-control news_type_select" name="news_type">
                                 <option value="">Seçiniz</option>
-                                <option value="image">Resim</option>
-                                <option value="video">Video</option>
+                                <option <?php echo (isset($news_type) && $news_type == "image") ? "selected" : ""; ?> value="image">Resim</option>
+                                <option <?php echo (isset($news_type) && $news_type == "video") ? "selected" : ""; ?> value="video">Video</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="form-group image_upload_container">
-                        <label>Görsel Seçiniz</label>
-                        <input type="file" name="img_url" class="form-control">
-                    </div>
+                    <?php if(isset($form_error)) { ?>
 
-                    <div class="form-group video_url_container">
-                        <label>Video URL</label>
-                        <input type="text" class="form-control" placeholder="Video bağlantısını buraya yapıştırınız" name="video_url">
-                        <?php if (isset($form_error)) { ?>
-                            <small class="input-form-error"><?php echo form_error("video_url"); ?></small>
-                        <?php } ?>
-                    </div>
+                        <div class="form-group image_upload_container" style="display: <?php echo ($news_type == "image") ? "block" : "none"; ?>">
+                            <label>Görsel Seçiniz</label>
+                            <input type="file" name="img_url" class="form-control">
+                        </div>
 
+                        <div class="form-group video_url_container" style="display: <?php echo ($news_type == "video") ? "block" : "none"; ?>">
+                            <label>Video URL</label>
+                            <input class="form-control" placeholder="Video bağlantısını buraya yapıştırınız" name="video_url" value="<?php echo isset($_POST["video_url"]) ? $_POST["video_url"] : ""; ?>">
+                            <?php if(isset($form_error)){ ?>
+                                <small class="pull-right input-form-error"> <?php echo form_error("video_url"); ?></small>
+                            <?php } ?>
+                        </div>
+
+                    <?php } else { ?>
+                        <div class="form-group image_upload_container">
+                            <label>Görsel Seçiniz</label>
+                            <input type="file" name="img_url" class="form-control">
+                        </div>
+
+                        <div class="form-group video_url_container">
+                            <label>Video URL</label>
+                            <input class="form-control" placeholder="Video bağlantısını buraya yapıştırınız" name="video_url">
+                        </div>
+                    <?php } ?>
                     <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
-                    <a href="<?php echo base_url("news") ?>" class="btn btn-md btn-danger btn-outline">İptal</a>
+                    <a href="<?php echo base_url("news"); ?>" class="btn btn-md btn-danger btn-outline">İptal</a>
                 </form>
-            </div><!-- .widget-body -->
+            </div>
         </div>
     </div>
 </div>

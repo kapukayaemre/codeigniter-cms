@@ -6,6 +6,9 @@ $(document).ready(function () {
         } else if ($(this).val() === "video") {
             $(".video_url_container").fadeIn();
             $(".image_upload_container").hide();
+        } else {
+            $(".video_url_container").hide();
+            $(".image_upload_container").hide();
         }
     });
 });
