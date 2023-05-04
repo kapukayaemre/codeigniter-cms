@@ -25,7 +25,7 @@
                             <th>Haber Türü</th>
                             <th>Görsel</th>
                             <th>Durumu</th>
-                            <th style="width: 300px" class="text-center">İşlem</th>
+                            <th style="width: 100px" class="text-center">İşlem</th>
                         </tr>
                         </thead>
                         <tbody class="sortable" data-url="<?php echo base_url("news/rankSetter"); ?>">
@@ -48,7 +48,7 @@
                                             <?php echo ($item->isActive) ? "checked" : "" ?>
                                         />
                                 </td>
-                                <td style="width: 200px" class="text-center">
+                                <td style="width: 200px" class="text-center pull-right">
                                     <button
                                         data-url="<?php echo base_url("news/delete/$item->id"); ?>"
                                         class="btn btn-danger btn-outline remove-btn">
