@@ -39,7 +39,7 @@
                                     <td><?php echo $item->url; ?></td>
                                     <td><?php echo $item->description; ?></td>
                                     <td class="text-center" style="width: 75px">
-<!--                                        <img width="100" src="--><?php //echo base_url("uploads/$viewFolder/$item->img_url"); ?><!--" alt="" class="img-rounded">-->
+                                        <img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" alt="" class="img-rounded">
                                     </td>
                                     <td class="w50">
                                         <input
