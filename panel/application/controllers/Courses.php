@@ -65,6 +65,7 @@ class Courses extends CI_Controller
         }
 
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
+        $this->form_validation->set_rules("event_date", "Eğitim Tarihi", "required|trim");
         $this->form_validation->set_message(
             array(
                 "required" => "<b>{field}</b> alanı doldurulmalıdır"
@@ -96,6 +97,7 @@ class Courses extends CI_Controller
                         "description" => $this->input->post("description"),
                         "url"         => convertToSEO($this->input->post("title")),
                         "img_url"     => $uploaded_file,
+                        "event_date"  => $this->input->post("event_date"),
                         "rank"        => 0,
                         "isActive"    => 1,
                         "createdAt"   => date("Y-m-d H:i:s")
@@ -253,9 +255,9 @@ class Courses extends CI_Controller
             $viewData = new stdClass();
 
             /*? View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-            $viewData->viewFolder      = $this->viewFolder;
-            $viewData->subViewFolder   = "update";
-            $viewData->form_error      = true;
+            $viewData->viewFolder    = $this->viewFolder;
+            $viewData->subViewFolder = "update";
+            $viewData->form_error    = true;
 
             /*? Tablodan Verilerin Getirilmesi.. */
             $viewData->item = $this->course_model->get(

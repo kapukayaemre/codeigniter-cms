@@ -11,5 +11,6 @@ function convertToSEO($text)
 
 function get_readable_date($date)
 {
-    return strftime("%e %B %Y %H:%M", strtotime($date));
+    setlocale(LC_ALL, 'tr_TR.UTF-8');
+    return strftime('%e %B %Y %H:%M', strtotime($date));
 }
