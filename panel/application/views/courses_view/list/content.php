@@ -24,7 +24,6 @@
                                 <th class="w50">#id</th>
                                 <th>Başlık</th>
                                 <th>Tarih</th>
-                                <th>Açıklama</th>
                                 <th>Görsel</th>
                                 <th>Durumu</th>
                                 <th style="width: 100px">İşlem</th>
@@ -36,8 +35,7 @@
                                     <td class="order"><i class="fa fa-reorder"></i></td>
                                     <td class="w50">#<?php echo $item->id; ?></td>
                                     <td><?php echo $item->title; ?></td>
-                                    <td><?php echo $item->event_date; ?></td>
-                                    <td><?php echo $item->description; ?></td>
+                                    <td class="w200"><?php echo get_readable_date($item->event_date); ?></td>
                                     <td class="text-center" style="width: 75px">
                                         <img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" alt="" class="img-rounded">
                                     </td>
