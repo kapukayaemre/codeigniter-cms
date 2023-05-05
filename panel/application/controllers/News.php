@@ -49,6 +49,24 @@ class News extends CI_Controller
         $this->load->library("form_validation");
 
         $news_type = $this->input->post("news_type");
+
+        if ($news_type == "") {
+
+            $alert = array(
+                "title" => "İşlem Başarısız",
+                "text"  => "Lütfen Bir Haber Türü Seçiniz",
+                "type"  => "error"
+            );
+
+            // İşlemin Sonucunu Session'a yazma işlemi...
+            $this->session->set_flashdata("alert", $alert);
+
+            redirect(base_url("news/new_form"));
+
+            die();
+        }
+
+
         if ($news_type == "image") {
 
             if ($_FILES["img_url"]["name"] == "") {
